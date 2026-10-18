@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Manuscript reformatted to your target journal, references verified, cover letter drafted — in 48 hours.">
+<link rel="canonical" href="https://journalreadydesk.com/">
+<meta property="og:title" content="Journal-Ready Desk"><meta property="og:description" content="Manuscript reformatted to your target journal, references verified, cover letter drafted — in 48 hours."><meta property="og:url" content="https://journalreadydesk.com/">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Journal-Ready Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a manuscript page. One narrow reading column; the "track changes" blue is the only accent; spec details set in mono like a style guide. */
+:root{
+  --paper:#fcfcfb; --paper-2:#f3f3f0; --ink:#1c1f26; --ink-2:#4a4f5c; --ink-3:#7a8090; --rule:#dcdde1;
+  --tc:#1f5fd6; --tc-soft:#e7eefc; --ok:#1d7a4b; --ok-soft:#e3f3ea; --warn:#b4540a; --warn-soft:#fbeedd;
+  --display:"Newsreader",Georgia,"Times New Roman",serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#15171c;--paper-2:#1d2026;--ink:#ecedf0;--ink-2:#b9bdc8;--ink-3:#858b99;--rule:#2d313a;--tc:#7ea6ff;--tc-soft:#1b2a4a;--ok:#5fcf93;--ok-soft:#163626;--warn:#f0a35a;--warn-soft:#3b2612;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#15171c;--paper-2:#1d2026;--ink:#ecedf0;--ink-2:#b9bdc8;--ink-3:#858b99;--rule:#2d313a;--tc:#7ea6ff;--tc-soft:#1b2a4a;--ok:#5fcf93;--ok-soft:#163626;--warn:#f0a35a;--warn-soft:#3b2612;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+a{color:var(--tc)}
+.wrap{max-width:720px;margin:0 auto}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-.01em}
+.brand span{color:var(--tc)}
+.top .tag{font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,6vw,50px);letter-spacing:-.015em}
+h2{font-size:clamp(26px,4vw,32px);margin-bottom:14px}
+h3{font-size:20px;margin-bottom:6px}
+p{margin:0 0 14px}
+.lead{font-size:19px;color:var(--ink-2);max-width:60ch}
+section{padding-block:40px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.hero{padding-block:48px 40px}
+.hero .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px;padding:13px 20px;border-radius:6px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn.primary{background:var(--tc);color:#fff}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.primary[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn:focus-visible{outline:3px solid var(--tc-soft);outline-offset:2px}
+.price-note{font-size:14px;color:var(--ink-3)}
+.price-note s{color:var(--ink-3)}
+.strip{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--ink-2)}
+.strip span::before{content:"✓ ";color:var(--ok)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:640px){.steps{grid-template-columns:1fr}}
+.step{border-top:2px solid var(--tc);padding-top:12px;min-width:0}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--tc);letter-spacing:.06em}
+.step h3{margin-top:4px}
+.step p{color:var(--ink-2);font-size:15.5px;margin:0}
+.spec{background:var(--paper-2);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.6;overflow-x:auto}
+.spec .h{color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;margin-bottom:8px}
+.spec ul{list-style:none;padding:0;margin:0;display:grid;gap:4px}
+.spec li{display:grid;grid-template-columns:22px 1fr;gap:6px}
+.spec li b{font-weight:500;color:var(--ok)}
+.spec li i{font-style:normal;color:var(--ink-2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.two{grid-template-columns:1fr}}
+.two>div{min-width:0}
+ul.plain{padding-left:20px;margin:0;display:grid;gap:8px}
+ul.plain li{padding-left:2px}
+.ref{font-family:var(--mono);font-size:13px;line-height:1.5;background:var(--paper-2);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;overflow-x:auto}
+.ref .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px}
+.ref .del{color:var(--warn);text-decoration:line-through;text-decoration-color:var(--warn)}
+.ref .ins{color:var(--tc);text-decoration:underline;text-decoration-color:var(--tc);text-underline-offset:2px}
+.ref .flag{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:4px;background:var(--warn-soft);color:var(--warn);font-size:12px}
+.skus{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:560px){.skus{grid-template-columns:1fr}}
+.sku{border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.sku.lead-sku{border-color:var(--tc);background:var(--tc-soft)}
+.sku .name{font-weight:600}
+.sku .what{font-size:14.5px;color:var(--ink-2)}
+.sku .p{font-family:var(--mono);font-size:15px;margin-top:auto;padding-top:8px}
+.sku .p small{color:var(--ink-3);font-size:12px}
+.never{border-left:3px solid var(--warn);padding-left:16px}
+.never ul{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--ink-2);font-size:15.5px}
+details{border-top:1px solid var(--rule);padding:12px 0}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-family:var(--mono);color:var(--ink-3)}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--ink-2);font-size:15.5px}
+.guarantee{display:flex;gap:14px;align-items:flex-start;background:var(--ok-soft);border-radius:6px;padding:16px 18px}
+.guarantee .mark{font-family:var(--display);font-size:28px;color:var(--ok);line-height:1}
+.guarantee p{margin:0;font-size:15.5px}
+footer{padding-top:28px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.copy{display:inline-flex;align-items:center;gap:8px}
+.copy button{font:inherit;font-size:12px;padding:3px 8px;border:1px solid var(--rule);background:transparent;color:var(--ink-2);border-radius:4px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:6px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+@media(prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="brand">Journal-<span>Ready</span> Desk</div>
+  <div class="tag">Manuscript reformatting · 48 h</div>
+</header>
+
+<section class="hero">
+  <h1>Rejected? Journal-ready for the next journal in 48 hours.</h1>
+  <p class="lead" style="margin-top:16px">Send us your manuscript and the name of the target journal. We restructure it to that journal's author guidelines, restyle and verify every reference, and draft the cover letter. You submit.</p>
+  <div class="cta-row">
+    <a class="btn primary" id="cta-top" href="#order">Order for $49</a>
+    <span class="price-note"><s>$59</s> launch price for the first 10 orders · 48-hour delivery or your money back</span>
+  </div>
+  <div class="strip">
+    <span>Any journal, any style</span><span>References verified against PubMed &amp; Crossref</span><span>No scientific content touched</span><span>.docx in, .docx out</span>
+  </div>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><div class="n">STEP 1</div><h3>Pay</h3><p>Secure card checkout. You get a receipt and the desk's email address.</p></div>
+    <div class="step"><div class="n">STEP 2</div><h3>Send the manuscript</h3><p>Email the .docx and the target journal's name (or a link to its author guidelines). De-identify any patient data first.</p></div>
+    <div class="step"><div class="n">STEP 3</div><h3>Receive the pack</h3><p>Within 48 hours: formatted manuscript, verified references, cover letter, checklist, change log.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>What arrives in your inbox</h2>
+  <div class="two">
+    <div>
+      <ul class="plain">
+        <li><strong>Manuscript, restructured</strong> to the journal's section order, headings, abstract format and word limits, with tracked changes and a clean copy.</li>
+        <li><strong>Reference list, restyled and verified.</strong> Every citation re-rendered in the journal's style and checked against PubMed/Crossref. Anything we cannot verify is flagged, never guessed.</li>
+        <li><strong>Cover letter</strong> addressed to the editor, built from your abstract and the journal's scope.</li>
+        <li><strong>Submission checklist</strong>: figure formats, declarations, author forms, ORCID, data statements, so nothing bounces at the portal.</li>
+        <li><strong>Change log</strong>: one page listing exactly what moved and why.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="spec">
+        <div class="h">Example compliance check — resubmission to a surgical journal</div>
+        <ul>
+          <li><b>✓</b><i>Structured abstract: Background / Methods / Results / Conclusions, ≤ 250 words</i></li>
+          <li><b>✓</b><i>Main text ≤ 3,500 words, Vancouver references, numbered in order of citation</i></li>
+          <li><b>✓</b><i>Figures as separate TIFF, ≥ 300 dpi, legends after references</i></li>
+          <li><b>✓</b><i>Title page: running head ≤ 50 characters, author contributions, funding, conflicts</i></li>
+          <li><b>✓</b><i>STROBE checklist attached for observational design</i></li>
+          <li><b>!</b><i>Ref 14 points to a retracted article — flagged for the author</i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>What verification looks like</h2>
+  <p class="lead">A reference list is where resubmissions fail quietly. We re-render every entry in the target style and look each one up.</p>
+  <div class="ref">
+    <span class="lbl">Reference 7 · APA → Vancouver, verified</span>
+    <span class="del">Giuliano, A. E., Ballman, K. V., McCall, L., et al. (2017). Effect of axillary dissection vs no axillary dissection on 10-year overall survival… JAMA, 318(10), 918–926.</span><br>
+    <span class="ins">7. Giuliano AE, Ballman KV, McCall L, et al. Effect of axillary dissection vs no axillary dissection on 10-year overall survival among women with invasive breast cancer and sentinel node metastasis: the ACOSOG Z0011 (Alliance) randomized clinical trial. JAMA. 2017;318(10):918-926. doi:10.1001/jama.2017.11470</span><br>
+    <span class="flag">Matched on PubMed · DOI resolves · not retracted</span>
+  </div>
+</section>
+
+<section id="order">
+  <h2>Pricing</h2>
+  <div class="skus">
+    <div class="sku lead-sku"><div class="name">Resubmission pack</div><div class="what">Reformat to target journal + verified references + cover letter + checklist + change log. 48 h.</div><div class="p">$49 <small><s>$59</s> · first 10 orders</small></div></div>
+    <div class="sku"><div class="name">Bibliography clean-up</div><div class="what">Upload .bib / .ris / .docx. Deduplicated, DOI-resolved, restyled, with an error report.</div><div class="p">$19</div></div>
+    <div class="sku"><div class="name">Reviewer-response scaffold</div><div class="what">Every reviewer comment numbered in a response table, mapped to your revised lines. You write the science.</div><div class="p">$29</div></div>
+    <div class="sku"><div class="name">Abstract → poster + talk slides</div><div class="what">Conference-spec A0 poster and a 3-minute slide deck from your accepted abstract and data table.</div><div class="p">$49</div></div>
+  </div>
+  <div class="cta-row" style="margin-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <a class="btn primary" id="cta-order" href="#order">Order the resubmission pack — $49</a>
+    <span class="price-note">Card payment via Paddle (merchant of record). VAT handled at checkout.</span>
+  </div>
+  <p class="price-note" style="margin-top:12px">Add-ons can be ordered after the first pack by replying to your delivery email.</p>
+</section>
+
+<section>
+  <h2>What we never do</h2>
+  <div class="never">
+    <ul>
+      <li>Write, rewrite or "improve" scientific content, results or conclusions. Formatting and editing only. Your paper stays yours.</li>
+      <li>Invent or "fix" a reference we cannot verify. Unverifiable entries come back flagged.</li>
+      <li>Accept manuscripts containing identifiable patient data. De-identify before sending.</li>
+      <li>Submit on your behalf or touch your journal portal account.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Questions</h2>
+  <details><summary>Who does the work?</summary><p>A small editorial desk using AI-assisted formatting tools with a human verification pass on structure, references and the cover letter. Every reference is checked by lookup, not by eye.</p></details>
+  <details><summary>Which file formats?</summary><p>Word (.docx) in and out, with tracked changes and a clean copy. LaTeX manuscripts: send the .tex and .bib; we return a .tex adapted to the journal's template where one exists, otherwise a formatted .docx.</p></details>
+  <details><summary>What if the journal's guidelines are behind a login?</summary><p>Most are public. If not, forward the guidelines PDF or paste the text, and we work from that.</p></details>
+  <details><summary>How is 48 hours counted?</summary><p>From the moment we confirm receipt of your manuscript and target journal by email. Weekends included.</p></details>
+  <details><summary>What if you miss the deadline or the pack isn't usable?</summary><p>Full refund, no questions. Tell us within 7 days of delivery.</p></details>
+  <details><summary>Can you format for two journals at once?</summary><p>Yes, as two packs. Say so in your email and we invoice the second at the same price.</p></details>
+  <details><summary>Is this ghost-writing?</summary><p>No. Journals permit editing and formatting assistance; many recommend it. We change no scientific content, and the change log shows exactly what moved so you can disclose it if your journal asks.</p></details>
+</section>
+
+<section>
+  <div class="guarantee"><div class="mark">✓</div><p><strong>48 hours or free.</strong> If the pack is late, or you cannot use it, you pay nothing. The manuscript is deleted from our systems 30 days after delivery.</p></div>
+</section>
+
+<footer>
+  <div>© 2026 Journal-Ready Desk</div>
+  <div class="copy">Contact: <span id="mail">desk@journalreadydesk.com</span><button type="button" id="copy-mail">Copy</button></div>
+<div> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refunds.html">Refunds</a></div></footer>
+</div>
+<div class="toast" id="toast" role="status">Copied</div>
+
+<script>
+// Set once Paddle checkout exists. Empty = review mode (buttons scroll to pricing, no checkout).
+const CHECKOUT_URL = "";
+const CONTACT_EMAIL = "desk@journalreadydesk.com";
+(function(){
+  document.getElementById('mail').textContent = CONTACT_EMAIL;
+  const btns = [document.getElementById('cta-top'), document.getElementById('cta-order')];
+  btns.forEach(b => {
+    if (CHECKOUT_URL) { b.href = CHECKOUT_URL; b.target = "_blank"; b.rel = "noopener"; }
+    else { b.setAttribute('aria-disabled','true'); b.title = 'Checkout connects after review'; b.addEventListener('click', e => { if (b.id==='cta-order') e.preventDefault(); }); }
+  });
+  const toast = document.getElementById('toast');
+  document.getElementById('copy-mail').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(CONTACT_EMAIL); toast.textContent = 'Copied'; }
+    catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast.textContent = 'Selected — press copy'; }
+    toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1600);
+  });
+})();
+</script>
+
+</body>
+</html>
