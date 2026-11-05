@@ -120,7 +120,7 @@ footer{padding-top:28px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wr
 <section>
   <h2>How it works</h2>
   <div class="steps">
-    <div class="step"><div class="n">STEP 1</div><h3>Pay</h3><p>Secure card checkout. You get a receipt and the desk's email address.</p></div>
+    <div class="step"><div class="n">STEP 1</div><h3>Pay</h3><p>Request an invoice (USD 49 ≈ KD 15), pay by bank transfer or card link, and you get the desk's email address.</p></div>
     <div class="step"><div class="n">STEP 2</div><h3>Send the manuscript</h3><p>Email the .docx and the target journal's name (or a link to its author guidelines). De-identify any patient data first.</p></div>
     <div class="step"><div class="n">STEP 3</div><h3>Receive the pack</h3><p>Within 48 hours: formatted manuscript, verified references, cover letter, checklist, change log.</p></div>
   </div>
@@ -175,7 +175,7 @@ footer{padding-top:28px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wr
   </div>
   <div class="cta-row" style="margin-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
     <a class="btn primary" id="cta-order" href="#order">Order the resubmission pack — $49</a>
-    <span class="price-note">Card payment via Paddle (merchant of record). VAT handled at checkout.</span>
+    <span class="price-note">Invoice by email within the hour; pay by bank transfer. Full refund if we deliver late.</span>
   </div>
   <p class="price-note" style="margin-top:12px">Add-ons can be ordered after the first pack by replying to your delivery email.</p>
 </section>
@@ -216,7 +216,7 @@ footer{padding-top:28px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wr
 
 <script>
 // Set once Paddle checkout exists. Empty = review mode (buttons scroll to pricing, no checkout).
-const CHECKOUT_URL = "";
+const CHECKOUT_URL = "https://pay-beryl-ten.vercel.app/request?product=jrd";
 const CONTACT_EMAIL = "desk@journalreadydesk.com";
 (function(){
   document.getElementById('mail').textContent = CONTACT_EMAIL;
